@@ -10,18 +10,18 @@ let outputChannel: vscode.OutputChannel;
  * @param {vscode.ExtensionContext} context - The extension context.
  */
 export function activate(context: vscode.ExtensionContext) {
-	outputChannel = vscode.window.createOutputChannel(
-		'Lang by En-key Translations Replacer',
-	);
+	outputChannel = vscode.window.createOutputChannel('KeyLang Replacer');
 	context.subscriptions.push(outputChannel);
 
 	const disposable = vscode.commands.registerCommand(
-		'extension.replaceLangWithJSON',
+		'extension.replaceTranslationsWithJSON',
 		async () => {
 			// Clear the output channel
 			outputChannel.clear();
 			outputChannel.show(true);
-			outputChannel.appendLine('Command replaceLangWithJSON started.');
+			outputChannel.appendLine(
+				'Command replaceTranslationsWithJSON started.',
+			);
 
 			// Ask the user to select a JSON file with the mapping
 			const uris = await vscode.window.showOpenDialog({
@@ -151,7 +151,9 @@ export function activate(context: vscode.ExtensionContext) {
 				}
 			}
 
-			outputChannel.appendLine('Command replaceLangWithJSON completed.');
+			outputChannel.appendLine(
+				'Command replaceTranslationsWithJSON completed.',
+			);
 			vscode.window.showInformationMessage('Arabic values replaced!');
 		},
 	);

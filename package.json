@@ -1,27 +1,28 @@
 {
-  "name": "lang-by-en-translation-replacer",
-  "displayName": "Replace Lang With JSON",
-  "description": "Replaces the content of the active editor with the contents of a JSON file.",
+  "name": "key-lang-replacer",
+  "displayName": "KeyLang Replacer",
+  "description": "Automatically replaces translations in your code based on English keys, syncing content across different languages using a JSON mapping file.",
   "author": "A-Kimpo (https://github.com/A-Kimpo)",
   "publisher": "a-kimpo",
-  "repository": "https://github.com/A-Kimpo/lang-by-en-translation-replacer",
+  "repository": "https://github.com/A-Kimpo/key-lang-replacer",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.97.0"
   },
   "icon": "images/icon.png",
   "categories": [
-    "Languages", "Other"
+    "Languages",
+    "Other"
   ],
   "main": "./out/extension.js",
   "activationEvents": [
-    "onCommand:extension.replaceLangWithJSON"
+    "onCommand:extension.replaceTranslationsWithJSON"
   ],
   "contributes": {
     "commands": [
       {
-        "command": "extension.replaceLangWithJSON",
-        "title": "Replace Lang Keys With JSON"
+        "command": "extension.replaceTranslationsWithJSON",
+        "title": "Replace Translations With JSON"
       }
     ]
   },

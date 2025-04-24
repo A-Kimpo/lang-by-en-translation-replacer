@@ -1,8 +1,8 @@
-# Lang by En-key Translations Replacer VS Code Extension
+# KeyLang Replacer VS Code Extension
 
 ## Description
 
-**Lang by En-key Translations Replacer** is a Visual Studio Code extension that automatically updates Arabic translations (`ar`) based on their corresponding English values (`en`) using a user-provided JSON mapping.
+**KeyLang Replacer** is a Visual Studio Code extension that automatically updates Arabic translations (`ar`) or other in future based on their corresponding English values (`en`) using a user-provided JSON mapping.
 
 The extension:
 
@@ -16,14 +16,14 @@ The extension:
   }
   ```
 * Replaces `ar` values with new strings from a JSON mapping file. (Ar only now)
-* Logs detailed actions in the **Lang by En-key Translations Replacer** output channel.
+* Logs detailed actions in the **KeyLang Replacer** output channel.
 
 ## Installation
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/A-Kimpo/lang-by-en-translation-replacer
-   cd lang-by-en-translation-replacer
+   git clone https://github.com/A-Kimpo/key-lang-replacer
+   cd key-lang-replacer
    ```
 2. Install dependencies and compile:
    ```bash
@@ -38,7 +38,7 @@ The extension:
 
 ## Usage
 
-1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run  **Replace Lang Keys With JSON**. (Ar only now)
+1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run  **Replace Translations With JSON**. (Ar only now)
 2. Select your JSON mapping file in the file picker. The JSON should be in the format:
    ```json
    {
@@ -47,7 +47,7 @@ The extension:
    }
    ```
 3. The extension will process all translation blocks and apply replacements.
-4. Go to **View → Output** (`Ctrl+Shift+U` or `Cmd+Shift+U`) and select **Lang by En-key Translations Replacer** to review logs.
+4. Go to **View → Output** (`Ctrl+Shift+U` or `Cmd+Shift+U`) and select **KeyLang Replacer** to review logs.
 
 ## Configuration
 
@@ -55,13 +55,13 @@ Your `package.json` should include:
 
 ```jsonc
 "activationEvents": [
-  "onCommand:extension.replaceLangWithJSON"
+  "onCommand:extension.replaceTranslationsWithJSON"
 ],
 "contributes": {
   "commands": [
     {
-      "command": "extension.replaceLangWithJSON",
-      "title": "Replace Lang Keys With JSON"
+      "command": "extension.replaceTranslationsWithJSON",
+      "title": "Replace Translations With JSON"
     }
   ]
 }
