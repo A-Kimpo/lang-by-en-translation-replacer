@@ -108,10 +108,14 @@ export function activate(context: vscode.ExtensionContext) {
 					);
 
 					if (mapping[enValue]) {
-						const newAr = mapping[enValue];
+						const rawAr = mapping[enValue];
+						const newAr = rawAr
+							.trim()
+							.replace(/^"+|"+$/g, '')
+							.replace(/"/g, '\\"');
 						const updatedBlock = fullBlock.replace(
 							/\bar\s*:\s*"[^"]*"/,
-							`ar: "${newAr.trim()}"`,
+							`ar: "${newAr}"`,
 						);
 						const startPos = doc.positionAt(match.index);
 						const endPos = doc.positionAt(
