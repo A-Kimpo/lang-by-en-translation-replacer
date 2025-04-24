@@ -1,0 +1,45 @@
+{
+  "name": "lang-by-en-translation-replacer",
+  "displayName": "Replace Lang With JSON",
+  "description": "Replaces the content of the active editor with the contents of a JSON file.",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.97.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onCommand:extension.replaceLangWithJSON"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "extension.replaceLangWithJSON",
+        "title": "Replace Ar Lang Keys With JSON"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src",
+    "test": "npm run compile && mocha"
+  },
+  "devDependencies": {
+    "@types/mocha": "^10.0.10",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.97.0",
+    "@typescript-eslint/eslint-plugin": "^8.22.0",
+    "@typescript-eslint/parser": "^8.22.0",
+    "@vscode/test-cli": "^0.0.10",
+    "@vscode/test-electron": "^2.4.1",
+    "eslint": "^9.19.0",
+    "mocha": "^11.1.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.3"
+  }
+}
