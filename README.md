@@ -1,72 +1,96 @@
+# Lang by En-key Translations Replacer VS Code Extension
 
-# lang-by-en-translation-replacer README
+## Description
 
-This is the README for your extension "lang-by-en-translation-replacer". After writing up a brief description, we recommend including the following sections.
+**Lang by En-key Translations Replacer** is a Visual Studio Code extension that automatically updates Arabic translations (`ar`) based on their corresponding English values (`en`) using a user-provided JSON mapping.
 
-## Features
+The extension:
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+* Scans all `.js`, `.ts`, `.jsx`, and `.tsx` files in your workspace, excluding `node_modules` and `public` folders.
+* Detects translation blocks of the form:
+  ```js
+  key: {
+    en: "EnglishValue",
+    ar: "ArabicValue",
+    // other properties…
+  }
+  ```
+* Replaces `ar` values with new strings from a JSON mapping file. (Ar only now)
+* Logs detailed actions in the **Lang by En-key Translations Replacer** output channel.
 
-For example if there is an image subfolder under your extension project workspace:
+## Installation
 
-\!\[feature X\]\(images/feature-x.png\)
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/A-Kimpo/lang-by-en-translation-replacer
+   cd lang-by-en-translation-replacer
+   ```
+2. Install dependencies and compile:
+   ```bash
+   npm install
+   npm run compile
+   ```
+3. Package the extension:
+   ```bash
+   npx vsce package
+   ```
+4. In VS Code, open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and choose  **Extensions: Install from VSIX...** , then select the generated `.vsix` file.
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+## Usage
 
-## Requirements
+1. Open the Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`) and run  **Replace Lang Keys With JSON**. (Ar only now)
+2. Select your JSON mapping file in the file picker. The JSON should be in the format:
+   ```json
+   {
+     "Standard": "معيار",
+     "Price": "سعر"
+   }
+   ```
+3. The extension will process all translation blocks and apply replacements.
+4. Go to **View → Output** (`Ctrl+Shift+U` or `Cmd+Shift+U`) and select **Lang by En-key Translations Replacer** to review logs.
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## Configuration
 
-## Extension Settings
+Your `package.json` should include:
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+```jsonc
+"activationEvents": [
+  "onCommand:extension.replaceLangWithJSON"
+],
+"contributes": {
+  "commands": [
+    {
+      "command": "extension.replaceLangWithJSON",
+      "title": "Replace Lang Keys With JSON"
+    }
+  ]
+}
+```
 
-For example:
+## Development
 
-This extension contributes the following settings:
+* **Debug** : Press `F5` in VS Code to open an Extension Development Host.
+* **Command implementation** :
 
-* `myExtension.enable`: Enable/disable this extension.
-* `myExtension.thing`: Set to `blah` to do something.
+1. `activate()` creates an `OutputChannel` and registers the command.
+2. On command execution, users pick a JSON file.
+3. JSON is read and parsed into a mapping object.
+4. `findFiles` collects all relevant files in the workspace.
+5. A regex locates translation blocks; matches are replaced by `WorkspaceEdit` and files are saved.
 
-## Known Issues
+## Testing
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+Basic unit tests are located in `src/test/extension.test.ts`. To run tests:
 
-## Release Notes
+1. Ensure `tsconfig.json` has `module: commonjs` and `rootDir: src, outDir: out`.
+2. Run:
+   ```bash
+   npm install
+   npm test
+   ```
 
-Users appreciate release notes as you update your extension.
+The test suite uses Mocha and `ts-node` to execute TypeScript tests directly.
 
-### 1.0.0
+## License
 
-Initial release of ...
-
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
----
-
-## Following extension guidelines
-
-Ensure that you've read through the extensions guidelines and follow the best practices for creating your extension.
-
-* [Extension Guidelines](https://code.visualstudio.com/api/references/extension-guidelines)
-
-## Working with Markdown
-
-You can author your README using Visual Studio Code. Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux).
-* Toggle preview (`Shift+Cmd+V` on macOS or `Shift+Ctrl+V` on Windows and Linux).
-* Press `Ctrl+Space` (Windows, Linux, macOS) to see a list of Markdown snippets.
-
-## For more information
-
-* [Visual Studio Code&#39;s Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+MIT © Aleksey Kondakov
