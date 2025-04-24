@@ -10,7 +10,9 @@ let outputChannel: vscode.OutputChannel;
  * @param {vscode.ExtensionContext} context - The extension context.
  */
 export function activate(context: vscode.ExtensionContext) {
-	outputChannel = vscode.window.createOutputChannel('Translations Replacer');
+	outputChannel = vscode.window.createOutputChannel(
+		'Lang by En-key Translations Replacer',
+	);
 	context.subscriptions.push(outputChannel);
 
 	const disposable = vscode.commands.registerCommand(
@@ -59,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 			// Find all files in the workspace with the extensions .js, .ts, .jsx, .tsx
 			const files = await vscode.workspace.findFiles(
 				'**/*.{js,ts,jsx,tsx}',
-				'**/node_modules/**,**/public/**',
+				'**/{node_modules,public}/**',
 			);
 
 			outputChannel.appendLine(`Found ${files.length} files to process.`);
