@@ -17,7 +17,7 @@
     "commands": [
       {
         "command": "extension.replaceLangWithJSON",
-        "title": "Replace Ar Lang Keys With JSON"
+        "title": "Replace Lang Keys With JSON"
       }
     ]
   },
