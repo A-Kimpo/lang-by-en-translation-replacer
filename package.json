@@ -2,13 +2,16 @@
   "name": "lang-by-en-translation-replacer",
   "displayName": "Replace Lang With JSON",
   "description": "Replaces the content of the active editor with the contents of a JSON file.",
+  "author": "A-Kimpo (https://github.com/A-Kimpo)",
+  "publisher": "a-kimpo",
   "repository": "https://github.com/A-Kimpo/lang-by-en-translation-replacer",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.97.0"
   },
+  "icon": "images/icon.png",
   "categories": [
-    "Other"
+    "Languages", "Other"
   ],
   "main": "./out/extension.js",
   "activationEvents": [
